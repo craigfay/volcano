@@ -1,0 +1,21 @@
+{
+    "short_name": "Chord Shapes",
+    "name": "Jazz Guitar Chord Shapes",
+    "start_url": "/",
+    "icons": [
+        {
+            "src": "logo180x180.png",
+            "sizes": "180x180"
+        },
+        {
+            "src": "logo512x512.png",
+            "sizes": "512x512",
+            "purpose": "maskable"
+        }
+    ],
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#ffffff",
+    "description": "Explore jazz chord voicings for guitar"
+}

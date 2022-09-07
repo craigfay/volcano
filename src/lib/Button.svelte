@@ -1,7 +1,7 @@
 
 <script>
   export let disabled = false;
-  export let onClick = function(e) {}
+  export let onClick = function() {}
 
   const defaultClassAttr = [
     "px-6",
