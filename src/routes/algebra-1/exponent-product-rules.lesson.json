@@ -1,0 +1,62 @@
+{
+    "components": [
+        {
+            "_type": "Title",
+            "text": "Exponent Product Rules"
+        },
+        {
+            "_type": "Paragraph",
+            "spans": [
+                {
+                    "bold": false,
+                    "italic": false,
+                    "underline": false,
+                    "text": "Anytime we multiply two exponent expressions that have the same base, we can avoid repeated multiplication by knowing the following rule:"
+                }
+            ]
+        },
+        {
+            "_type": "MathExpression",
+            "tex": "y^{m} \\times y^{n} = y^{m + n}"
+        },
+        {
+            "_type": "Paragraph",
+            "spans": [
+                {
+                    "bold": false,
+                    "italic": false,
+                    "underline": false,
+                    "text": "For example:"
+                }
+            ]
+        },
+        {
+            "_type": "MathExpression",
+            "tex": "2^{3} \\times 2^{2} = 2^{5} = 32"
+        },
+        {
+            "_type": "MultipleChoiceProblem",
+            "prompt": [
+                {
+                    "_type": "Paragraph",
+                    "spans": [
+                        {
+                            "bold": false,
+                            "italic": false,
+                            "underline": false,
+                            "text": "Using the rule above, evaluate the following equation:"
+                        }
+                    ]
+                },
+                {
+                    "_type": "MathExpression",
+                    "tex": "3^{1} \\times 3^{3} = \\ ?"
+                }
+            ],
+            "multipleChoice": {
+                "correctChoice": "81",
+                "choices": ["36","81","12","9"]
+            }
+        }
+    ]
+}

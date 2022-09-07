@@ -1,0 +1,20 @@
+{
+    "title": "Algebra 1",
+    "slug": "algebra-1",
+    "shortDescription": "Learn the rules for symbols and their manipulation, which unify of almost all of mathematics.",
+    "longDescription": "Explore graphs of equations, exponents, counting problems, and more, emphasizing intuition and understanding over just finding an answer.\nThis course will deepen your knowledge of basic algebra and introduce you to some surprisingly useful applications of this powerful mathematical tool.",
+    "sections": [
+        {
+            "title": "The Rules of Exponents",
+            "slug": "the-rules-of-exponents",
+            "shortDescription": "Learn to solve exponent problems quickly and efficiently.",
+            "chapters": [
+                {
+                    "title": "Exponent Product Rules",
+                    "slug": "exponent-product-rules",
+                    "shortDescription": "Shortcuts for calculations involving exponent multiplication"
+                }
+            ]
+        }
+    ]
+}
