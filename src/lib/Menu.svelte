@@ -20,7 +20,7 @@
 
 <!-- Menu Container -->
 <div
-	class="transition-transform right-0 bg-white translate-x-full absolute h-full w-72 p-6 overflow-y-scroll"
+	class="transition-transform right-0 bg-white translate-x-full absolute h-screen w-72 p-6 overflow-y-scroll"
 	class:translate-x-0={isOpen}
 >
 	<!-- Menu Close Button -->
