@@ -1,9 +1,10 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ['./src/**/*.{html,js,svelte,ts}'],
-  theme: {
-    extend: {}
-  },
-  plugins: []
+const config = {
+	mode: 'jit',
+	content: ['./src/**/*.{html,js,svelte,ts}'],
+	plugins: [],
+	theme: {
+		extend: {}
+	},
 };
 
+module.exports = config;
