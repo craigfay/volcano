@@ -2,17 +2,17 @@
   import Button from '$lib/Button.svelte';
   import showdown from 'showdown';
 
+  export let editorContent = '## Title\n\n_Enter some text here_';
+
   const converter = new showdown.Converter();
 
   let editor;
   let mode = 'edit';
 
-  export let editorContent = '## Title\n\n_Enter some text here_';
-
   $: buttonText = mode == 'edit' ? 'Preview' : 'Edit';
   $: previewContent = converter.makeHtml(editorContent);
 
-  const toggleMode = () => {
+  function toggleMode() {
     mode = mode == 'edit' ? 'preview' : 'edit';
   };
 
@@ -46,8 +46,8 @@
 <style>
   :global([data-preview=''] *) {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+    margin-bottom: .5rem;
     font-weight: revert;
     font-size: revert;
-    margin-bottom: 1rem;
   }
 </style>
