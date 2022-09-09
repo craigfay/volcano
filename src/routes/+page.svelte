@@ -2,6 +2,7 @@
   import Button from '$lib/Button.svelte';
   import showdown from 'showdown';
 	import katex from "katex";
+  import colors from 'tailwindcss/colors';
 
   const markdown = new showdown.Converter();
 
@@ -12,15 +13,20 @@
     + '## Section 2\n\n'
     + 'This is a really, really, really, really, really, really, really, loooong line.\n\n'
     + '$\\cos(\\theta) + \\sin(x)$\n\n'
+    + '`<head></head>`\n\n'
     + '## Section 3\n\n'
     + '```\n'
     + 'git clone git@github.com:craigfay/open_ui.git && cd open_ui\n'
     + 'cargo run\n'
     + '```\n'
     + 'Some text\n\n'
-    + ' - Item 1 and a lot of unecessary super long extra annoying text to display.\n'
+    + ' - Item 1 and a lot of **unecessary** super long extra annoying text to display.\n'
     + ' - Item 2\n'
-    + ' - Item 3\n'
+    + ' - Item 3\n\n'
+    + 'Some more text\n\n'
+    + ' 1. Item 1 and a lot of **unecessary** super long extra annoying text to display.\n'
+    + ' 2. Item 2\n'
+    + ' 3. Item 3\n'
 
 
   let editor;
@@ -57,6 +63,17 @@
     editor.style.height = editor.scrollHeight + 'px';
   }
 
+  const color = colors.indigo;
+
+  const cssVars = Object.entries({
+    '--text-color': color[900],
+    '--link-color': color[500],
+    '--code-bg-color': color[50],
+    '--code-color': color[700],
+  })
+
+  const style = cssVars.map(([k, v]) => `${k}:${v}`).join(';');
+
 </script>
 
 
@@ -67,7 +84,7 @@
     <textarea
       data-editor
       bind:this={editor}
-      class="p-2 font-mono resize-none focus:outline-none"
+      class="p-2 text-indigo-900 font-mono resize-none focus:outline-none"
       style={`height:${editor?.scrollHeight}px`}
       on:input={resizeEditor}
       bind:value={editorContent}
@@ -75,26 +92,41 @@
   {/if}
 
   {#if mode == 'preview'}
-    <div data-preview class="overflow-x-hidden">{@html previewHTML}</div>
+    <div
+      data-preview class="overflow-x-hidden" {style}>{@html previewHTML}
+    </div>
   {/if}
 
 </div>
 
 <style>
-  /* Preventing x-overflow with line wrapping */
-  :global([data-preview=''] > :is(:not(ul))) {
-    white-space: pre-wrap;
-  }
-
   /* Setting sensible defaults for top-level preview elements */
   :global([data-preview=''] *) {
     all: revert;
+    color: var(--text-color);
+  }
+
+  /* Preventing x-overflow with line wrapping */
+  :global([data-preview=''] > :is(:not(ul, ol))) {
+    white-space: pre-wrap;
+  }
+
+  :global([data-preview=''] a) {
+    color: var(--link-color);
   }
 
   /* Styling code blocks */
-  :global([data-preview=''] pre) {
-    padding: 1rem;
-    background-color: #eee;
+  :global([data-preview=''] :is(pre, code)) {
+    background-color: var(--code-bg-color);
     border-radius: .4rem;
+  }
+
+  :global([data-preview=''] pre) {
+    padding: .75rem;
+  }
+
+  :global([data-preview=''] code) {
+    padding: .25rem;
+    color: var(--code-color);
   }
 </style>
