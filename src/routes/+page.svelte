@@ -1,19 +1,56 @@
 <script>
   import Button from '$lib/Button.svelte';
   import showdown from 'showdown';
+	import katex from "katex";
 
-  export let editorContent = '## Title\n\n_Enter some text here_';
+  const markdown = new showdown.Converter();
 
-  const converter = new showdown.Converter();
+  export let editorContent = '# Section 1\n\n'
+    + '_Enter some text here_\n\n'
+    + '$$lim_{x \\to \\infty} = \\frac{1}{2}$$\n\n'
+    + '[My Github Page](https://github.com/craigfay)\n\n'
+    + '## Section 2\n\n'
+    + 'This is a really, really, really, really, really, really, really, loooong line.\n\n'
+    + '$\\cos(\\theta) + \\sin(x)$\n\n'
+    + '## Section 3\n\n'
+    + '```\n'
+    + 'git clone git@github.com:craigfay/open_ui.git && cd open_ui\n'
+    + 'cargo run\n'
+    + '```\n'
+    + 'Some text\n\n'
+    + ' - Item 1 and a lot of unecessary super long extra annoying text to display.\n'
+    + ' - Item 2\n'
+    + ' - Item 3\n'
+
 
   let editor;
+
   let mode = 'edit';
 
   $: buttonText = mode == 'edit' ? 'Preview' : 'Edit';
-  $: previewContent = converter.makeHtml(editorContent);
+
+  let previewHTML = '';
+
+  function generatePreview() {
+    // Converting markdown to html
+    let html = markdown.makeHtml(editorContent);
+
+    // Handling latex block expressions
+    html = html.replace(/\$\$(.*)\$\$/g, (_match, p1) => {
+      return katex.renderToString(p1, { displayMode: true, throwOnError: false })
+    })
+
+    // Handling latex inline expressions
+    html = html.replace(/\$(.*)\$/g, (_match, p1) => {
+      return katex.renderToString(p1, { displayMode: false, throwOnError: false })
+    })
+
+    previewHTML = html;
+  }
 
   function toggleMode() {
     mode = mode == 'edit' ? 'preview' : 'edit';
+    generatePreview();
   };
 
   function resizeEditor() {
@@ -38,16 +75,26 @@
   {/if}
 
   {#if mode == 'preview'}
-    <div data-preview="">{@html previewContent}</div>
+    <div data-preview class="overflow-x-hidden">{@html previewHTML}</div>
   {/if}
 
 </div>
 
 <style>
+  /* Preventing x-overflow with line wrapping */
+  :global([data-preview=''] > :is(:not(ul))) {
+    white-space: pre-wrap;
+  }
+
+  /* Setting sensible defaults for top-level preview elements */
   :global([data-preview=''] *) {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
-    margin-bottom: .5rem;
-    font-weight: revert;
-    font-size: revert;
+    all: revert;
+  }
+
+  /* Styling code blocks */
+  :global([data-preview=''] pre) {
+    padding: 1rem;
+    background-color: #eee;
+    border-radius: .4rem;
   }
 </style>
