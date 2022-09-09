@@ -2,7 +2,8 @@
   import Button from '$lib/Button.svelte';
   import showdown from 'showdown';
 	import katex from "katex";
-  import colors from 'tailwindcss/colors';
+  import { color, styleAttr } from '$lib/style';
+
 
   const markdown = new showdown.Converter();
 
@@ -12,7 +13,7 @@
     + '[My Github Page](https://github.com/craigfay)\n\n'
     + '## Section 2\n\n'
     + 'This is a really, really, really, really, really, really, really, loooong line.\n\n'
-    + '$\\cos(\\theta) + \\sin(x)$\n\n'
+    + '$f\'(x) = \\frac{\\cos(\\theta)}{\\sin(x)}$\n\n'
     + '`<head></head>`\n\n'
     + '## Section 3\n\n'
     + '```\n'
@@ -63,28 +64,26 @@
     editor.style.height = editor.scrollHeight + 'px';
   }
 
-  const color = colors.indigo;
-
-  const cssVars = Object.entries({
+  const cssVars = {
     '--text-color': color[900],
-    '--link-color': color[500],
+    '--link-color': color[600],
     '--code-bg-color': color[50],
     '--code-color': color[700],
-  })
+  }
 
-  const style = cssVars.map(([k, v]) => `${k}:${v}`).join(';');
+  const style = styleAttr(cssVars)
 
 </script>
 
 
-<div class="m-4 flex flex-col max-w-full border-box">
+<div class="m-4 flex flex-col max-w-full border-box" {style}>
   <Button onClick={toggleMode} class="mb-4">{buttonText}</Button>
 
   {#if mode == 'edit'}
     <textarea
       data-editor
       bind:this={editor}
-      class="p-2 text-indigo-900 font-mono resize-none focus:outline-none"
+      class="p-2 font-mono resize-none focus:outline-none"
       style={`height:${editor?.scrollHeight}px`}
       on:input={resizeEditor}
       bind:value={editorContent}
@@ -100,6 +99,15 @@
 </div>
 
 <style>
+  textarea {
+    color: var(--text-color);
+  }
+
+  /* Attepting to solve katex top layer bug */
+  :global(.katex * ) {
+    z-index: -1;
+  }
+
   /* Setting sensible defaults for top-level preview elements */
   :global([data-preview=''] *) {
     all: revert;
