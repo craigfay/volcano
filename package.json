@@ -37,6 +37,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@isomorphic-git/lightning-fs": "^4.6.0",
 		"isomorphic-git": "^1.21.0",
 		"katex": "^0.16.2",
 		"showdown": "^2.1.0"
