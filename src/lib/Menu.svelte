@@ -14,11 +14,11 @@
 
 
 <!-- Blur Filter (Appears Behind Menu) -->
-<div on:click={closeBehavior} class:hidden={!isOpen} class="bg-gray-900/50 fixed backdrop-blur-sm w-screen h-screen" />
+<div on:click={closeBehavior} class:hidden={!isOpen} class="z-10 bg-gray-900/50 fixed backdrop-blur-sm w-screen h-screen" />
 
 <!-- Menu Container -->
 <div
-	class="transition-transform right-0 bg-white translate-x-full absolute h-screen w-72 p-6 overflow-y-scroll"
+	class="z-10 transition-transform right-0 bg-white translate-x-full absolute h-screen w-72 p-6 overflow-y-scroll"
 	class:translate-x-0={isOpen}
 >
 	<!-- Menu Close Button -->
