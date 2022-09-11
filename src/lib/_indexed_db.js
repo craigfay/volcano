@@ -1,4 +1,10 @@
 
+import { browser } from '$app/environment'
+
+// Make the indexed db instance available as svelte context
+export function exposeIndexedDB(setContext) {
+  setContext(contextKey, contextValue)
+}
 
 // Defining a symbol to use as a svelte context key
 // to prevent naming collisions when using `svelte.getContext`
@@ -6,12 +12,11 @@ export const contextKey = Symbol();
 
 
 // A value that a high level component can pass to `svelte.setContext`
-export const contextValue = (isBrowser)  => ({
+export const contextValue = {
   load: () => new Promise((resolve, _rej) => {
-    if (!isBrowser) return;
-    loadIndexedDB().then(resolve)
+    if (browser) loadIndexedDB().then(resolve)
   }),
-})
+}
 
 
 export async function loadIndexedDB() {
