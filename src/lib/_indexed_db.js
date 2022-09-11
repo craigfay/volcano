@@ -1,5 +1,10 @@
 
 
+// Defining a symbol to use as a svelte context key
+// to prevent naming collisions.
+export const ContextKey = Symbol();
+
+
 export async function initializeIndexedDB() {
   return new Promise(async (res, rej) => {
     const openRequest = indexedDB.open('volcano', 1);

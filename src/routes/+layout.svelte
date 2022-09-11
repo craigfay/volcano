@@ -3,19 +3,19 @@
   import '../tailwind.css';
   import HeaderFooter from "$lib/HeaderFooter.svelte";
   import { onMount, setContext } from 'svelte';
-  import { initializeIndexedDB } from '$lib/_indexed_db';
+  import { initializeIndexedDB, ContextKey as IDBContext} from '$lib/_indexed_db';
 
 
-  let loadedDB = null;
+  let db = null;
 
-  setContext('indexed_db', {
+  setContext(IDBContext, {
     load: () => new Promise((res, _rej) => {
-      const tryAgain = () => loadedDB ? res(loadedDB) : setTimeout(tryAgain);
+      const tryAgain = () => db ? res(db) : setTimeout(tryAgain);
       tryAgain();
     }),
   })
 
-  onMount(async () => loadedDB = await initializeIndexedDB());
+  onMount(async () => db = await initializeIndexedDB());
 
 </script>
 
