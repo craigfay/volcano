@@ -29,7 +29,19 @@ async function wrapWithHelperFns(db) {
         request.onsuccess = event => resolve(event.target.result);
         request.onerror = event => reject(event);
       })
-    }
+    },
+
+    add(storeName, data) {
+      return new Promise((resolve, reject) => {
+        const transaction = db.transaction(storeName, "readwrite");
+        transaction.ooncomplete = resolve;
+        transaction.onerror = reject;
+
+        const objectStore = transaction.objectStore(storeName);
+        objectStore.add(data)
+      })
+    },
+
   }
 }
 
