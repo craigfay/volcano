@@ -21,8 +21,18 @@ const contextValue = new Promise(async (resolve, _rej) => {
 // Given an `IDBDatabase`, return an object that wraps common behavior
 // with async functions for ease of use.
 async function wrapWithHelperFns(db) {
+  let result = {};
+
+  Array.from(db.objectStoreNames).map(name => {
+    result[name] = makeHelperFns(db, name);
+  });
+
+  return result;
+}
+
+function makeHelperFns(db, storeName) {
   return {
-    getAll(storeName) {
+    getAll() {
       return new Promise((resolve, reject) => {
         const objectStore = db.transaction(storeName).objectStore(storeName);
         const request = objectStore.getAll()
@@ -31,7 +41,7 @@ async function wrapWithHelperFns(db) {
       })
     },
 
-    add(storeName, data) {
+    add(data) {
       return new Promise((resolve, reject) => {
         const transaction = db.transaction(storeName, "readwrite");
         transaction.ooncomplete = resolve;
@@ -41,8 +51,12 @@ async function wrapWithHelperFns(db) {
         objectStore.add(data)
       })
     },
-
   }
+
+}
+
+function capitalize(word) {
+  return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
 

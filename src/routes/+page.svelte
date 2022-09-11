@@ -10,7 +10,7 @@
     const db = await databaseStartup;
     console.log({ db });
 
-    const notebooks = await db.getAll("notebooks");
+    const notebooks = await db.notebooks.getAll();
     console.log({ notebooks })
   }
 
