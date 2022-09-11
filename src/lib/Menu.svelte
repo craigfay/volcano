@@ -8,9 +8,7 @@
 
 	export const menuItems = [
 		['Home', '/'],
-		['Products', '/'],
-		['Account', '/'],
-		['Settings', '/']
+		['Settings', '/settings']
 	];
 </script>
 
@@ -30,7 +28,7 @@
 
 	<!-- Menu Items -->
 	{#each menuItems as [name, href]}
-		<a {href} class="flex justify-between items-center">
+		<a {href} on:click={closeBehavior} class="flex justify-between items-center">
 			<span class="my-3 text-xl font-bold block">{name}</span>
 			<ChevronIcon color="#666" class="w-5 h-5" />
 		</a>
