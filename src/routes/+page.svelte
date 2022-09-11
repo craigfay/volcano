@@ -4,7 +4,7 @@
   import { onMount, getContext } from 'svelte';
   import { contextKey as indexedDBContext } from '$lib/_indexed_db';
 
-  const databaseStartup = getContext(indexedDBContext).load();
+  const databaseStartup = getContext(indexedDBContext);
 
   async function getNotebooks() {
     const db = await databaseStartup;

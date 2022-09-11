@@ -12,11 +12,9 @@ export const contextKey = Symbol();
 
 
 // A value that a high level component can pass to `svelte.setContext`
-export const contextValue = {
-  load: () => new Promise((resolve, _rej) => {
-    if (browser) loadIndexedDB().then(resolve)
-  }),
-}
+const contextValue = new Promise((resolve, _rej) => {
+  if (browser) loadIndexedDB().then(resolve)
+})
 
 
 export async function loadIndexedDB() {
