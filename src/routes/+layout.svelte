@@ -2,21 +2,11 @@
 <script>
   import '../tailwind.css';
   import HeaderFooter from "$lib/HeaderFooter.svelte";
-  import { onMount, setContext } from 'svelte';
-  import { initializeIndexedDB, ContextKey as IDBContext} from '$lib/_indexed_db';
+  import { setContext } from 'svelte';
+  import * as IDB from '$lib/_indexed_db';
+  import { browser } from '$app/environment'
 
-
-  let db = null;
-
-  setContext(IDBContext, {
-    load: () => new Promise((res, _rej) => {
-      const tryAgain = () => db ? res(db) : setTimeout(tryAgain);
-      tryAgain();
-    }),
-  })
-
-  onMount(async () => db = await initializeIndexedDB());
-
+  setContext(IDB.contextKey, IDB.contextValue(browser))
 </script>
 
 

@@ -2,20 +2,17 @@
   import Button from "$lib/Button.svelte";
   import NoteEditor from "$lib/NoteEditor.svelte";
   import { onMount, getContext } from 'svelte';
-  import { ContextKey as IDBContext } from '$lib/_indexed_db'
+  import * as IDB from '$lib/_indexed_db';
 
-  const dbLoading = getContext(IDBContext).load();
-
+  const loadingIDB = getContext(IDB.contextKey).load();
 
   async function getNotebooks() {
-    const db = await dbLoading;
-    console.log({ db });
-
+    const idb = await loadingIDB;
+    console.log({ idb });
   }
 
 
 </script>
 
 <Button onClick={getNotebooks}>Get Notebooks</Button>
-
 <!-- <NoteEditor /> -->
