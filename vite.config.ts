@@ -3,9 +3,6 @@ import type { UserConfig } from 'vite';
 
 const config: UserConfig = {
 	plugins: [sveltekit()],
-	ssr: {
-		noExternal: 'buffer'
-	}
 };
 
 export default config;

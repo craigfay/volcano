@@ -24,6 +24,6 @@
   $: classAttr = `${defaultClassAttr} ${$$props.class}`;
 </script>
 
-<button on:click={onClick} {style} {disabled} class={classAttr}>
+<button on:click={onClick} {style} {disabled} class={classAttr} type="button">
   <slot></slot>
 </button>
