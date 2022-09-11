@@ -13,7 +13,7 @@
 
 
 <HeaderFooter>
-  <PageTransition pathname={data.pathname}>
+  <PageTransition pageData={data}>
     <slot></slot>
   </PageTransition>
 </HeaderFooter>

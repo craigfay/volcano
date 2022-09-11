@@ -8,7 +8,11 @@
 
 	// Getting a URL to navigate back to the last page, if possible
 	afterNavigate((navigaton) => {
-		lastPageURL = navigaton?.from?.url?.pathname;
+    let pathname = navigaton?.from?.url?.pathname;
+    if (pathname) {
+      let search = new URLSearchParams({ back: '1' }).toString();
+  		lastPageURL = `${pathname}?${search}`;
+    }
 	});
 
 	let name = '';
