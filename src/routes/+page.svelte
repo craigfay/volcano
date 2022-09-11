@@ -30,7 +30,7 @@
 {#if isLoaded && !notebooks.length}
   <p class="text-lg text-indigo-800 m-6 p-4 text-center bg-indigo-50 rounded-md">
     You don't have any notebooks yet...<br />
-    <button class="underline">Create a new one!</button> ✏
+    <a href="/create-new" class="underline">Create a new one!</a> ✏
   </p>
 {/if}
 
