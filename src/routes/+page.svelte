@@ -3,11 +3,11 @@
   import NoteEditor from "$lib/NoteEditor.svelte";
   import { onMount, getContext } from 'svelte';
 
-  const dbPromise = getContext('indexed_db').get();
+  const dbLoading = getContext('indexed_db').load();
 
 
   async function getNotebooks() {
-    const db = await dbPromise;
+    const db = await dbLoading;
     console.log({ db });
 
   }
