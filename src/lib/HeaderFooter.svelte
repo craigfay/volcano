@@ -12,5 +12,5 @@
 <div class="max-h-screen flex flex-col fixed">
   <Menu {isOpen} closeBehavior={closeMenu}/>
   <NavBar {isOpen} {toggleMenu}/>
-  <div class="overflow-y-scroll"><slot /></div>
+  <div class="overflow-y-scroll overflow-x-hidden"><slot /></div>
 </div>
