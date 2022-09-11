@@ -10,29 +10,56 @@ export function exposeIndexedDB(setContext) {
 // to prevent naming collisions when using `svelte.getContext`
 export const contextKey = Symbol();
 
-
 // A value that a high level component can pass to `svelte.setContext`
-const contextValue = new Promise((resolve, _rej) => {
-  if (browser) loadIndexedDB().then(resolve)
+const contextValue = new Promise(async (resolve, _rej) => {
+  if (browser) loadIndexedDB()
+    .then(wrapWithHelperFns)
+    .then(resolve)
 })
 
 
+// Given an `IDBDatabase`, return an object that wraps common behavior
+// with async functions for ease of use.
+async function wrapWithHelperFns(db) {
+  return {
+    getAll(storeName) {
+      return new Promise((resolve, reject) => {
+        const objectStore = db.transaction(storeName).objectStore(storeName);
+        const request = objectStore.getAll()
+        request.onsuccess = event => resolve(event.target.result);
+        request.onerror = event => reject(event);
+      })
+    }
+  }
+}
+
+
 export async function loadIndexedDB() {
-  return new Promise(async (res, rej) => {
+  return new Promise(async (resolve, reject) => {
     const openRequest = indexedDB.open('volcano', 1);
-    openRequest.onupgradeneeded = upgradeIndexedDBv1;
-    openRequest.onsuccess = e => res(e.target.result);
-    openRequest.onerror = rej;
+    openRequest.onupgradeneeded = e => upgradeIndexedDBv1(e).then(resolve)
+    openRequest.onsuccess = e => resolve(e.target.result);
+    openRequest.onerror = reject;
   })
 }
 
 
-export async function upgradeIndexedDBv1(event) {
-  const stores = [
-    ["notebooks", { keyPath: "name" }],
-    ["notes", { keyPath: "name" }],
-  ];
+export function upgradeIndexedDBv1(event) {
+  return new Promise((resolve, reject) => {
 
-  const db = event.target.result;
-  stores.map((...args) => db.createObjectStore(...args));
+    const stores = [
+      ["notebooks", { keyPath: "name" }],
+      ["notes", { keyPath: "name" }],
+    ];
+
+    let db = event.target.result;
+
+    stores.map((args) => {
+      const store = db.createObjectStore(...args);
+      store.transaction.onerror = reject;
+      db = store.transaction.db;
+    });
+
+    resolve(db)
+  })
 }

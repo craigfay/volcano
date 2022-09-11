@@ -9,6 +9,9 @@
   async function getNotebooks() {
     const db = await databaseStartup;
     console.log({ db });
+
+    const notebooks = await db.getAll("notebooks");
+    console.log({ notebooks })
   }
 
 
