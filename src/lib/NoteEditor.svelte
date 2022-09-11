@@ -1,4 +1,5 @@
 <script>
+  import 'katex/dist/katex.min.css'
   import Button from '$lib/Button.svelte';
   import showdown from 'showdown';
 	import katex from "katex";
