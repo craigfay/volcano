@@ -21,11 +21,11 @@
 
   <!-- Right Side Items -->
   <div class="flex">
-    <button on:click={toggleMenu} class="w-10 mr-2">
+    <button aria-label="search" on:click={toggleMenu} class="w-10 mr-2">
       <SearchIcon color={color[800]} class="p-2"/>
     </button>
 
-    <button on:click={toggleMenu} class="w-10">
+    <button aria-label="open menu" on:click={toggleMenu} class="w-10">
       <HamburgerIcon color={color[800]} class="p-2"/>
     </button>
   </div>

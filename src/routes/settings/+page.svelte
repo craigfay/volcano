@@ -1,16 +1,7 @@
 <script>
 	import Button from '$lib/Button.svelte';
-	import ChevronIcon from '$lib/ChevronIcon.svelte';
-	import { afterNavigate } from '$app/navigation';
+  import BackButton from '$lib/BackButton.svelte';
 	import { onMount } from 'svelte';
-	import { color } from '$lib/style';
-
-	export let lastPageURL = null;
-
-	// Getting a URL to navigate back to the last page, if possible
-	afterNavigate((navigaton) => {
-		lastPageURL = navigaton?.from?.url?.pathname;
-	});
 
 	// Personal Access Token
 	let githubToken = '';
@@ -25,12 +16,7 @@
 </script>
 
 <form class="p-4">
-	{#if lastPageURL}
-		<div class="flex mb-4 items-center">
-			<ChevronIcon color={color[700]} class="w-3 h-3 rotate-180 mr-1" />
-			<a href={lastPageURL} class="text-indigo-700 font-bold">Back</a>
-		</div>
-	{/if}
+  <BackButton />
 
 	<h1 class="text-2xl font-bold text-indigo-900 mb-6">Github Settings</h1>
 

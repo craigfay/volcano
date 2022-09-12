@@ -2,10 +2,9 @@
 	import { fly } from 'svelte/transition';
   import { flyIn, flyOut } from '$lib/_animations'
 
-	export let pageData;
-  $: pathname = pageData.pathname;
-  $: searchParams = pageData.searchParams;
-  $: back = searchParams.get('back');
+	export let url;
+  $: pathname = url?.pathname;
+  $: back = false;
 
 </script>
 

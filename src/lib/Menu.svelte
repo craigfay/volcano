@@ -8,7 +8,8 @@
 
 	export const menuItems = [
 		['Home', '/'],
-		['Settings', '/settings']
+		['Editor', '/editor'],
+		['Settings', '/settings'],
 	];
 </script>
 
@@ -22,7 +23,7 @@
 	class:translate-x-0={isOpen}
 >
 	<!-- Menu Close Button -->
-	<button on:click={closeBehavior} class="block ml-auto mb-4">
+	<button aria-label="close menu" on:click={closeBehavior} class="block ml-auto mb-4">
 		<HamburgerIcon isOpen={true} color="#444" class="float-right w-8 h-8" />
 	</button>
 

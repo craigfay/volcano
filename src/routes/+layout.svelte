@@ -12,8 +12,18 @@
 </script>
 
 
+<svelte:head>
+  <title>Notebooks</title>
+  <meta
+    name="description"
+    content="Manage your notes using
+    the editor that supports markdown
+    and LaTeX syntax."
+  >
+</svelte:head>
+
 <HeaderFooter>
-  <PageTransition pageData={data}>
+  <PageTransition url={data.url}>
     <slot></slot>
   </PageTransition>
 </HeaderFooter>

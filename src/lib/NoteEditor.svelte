@@ -1,11 +1,6 @@
 <script>
-  import 'katex/dist/katex.min.css'
   import Button from '$lib/Button.svelte';
-  import showdown from 'showdown';
-	import katex from "katex";
   import { color, styleAttr } from '$lib/style';
-
-  const markdown = new showdown.Converter();
 
   export let editorContent = '# Section 1\n\n'
     + '_Enter some text here_\n\n'
@@ -13,6 +8,7 @@
     + '[My Github Page](https://github.com/craigfay)\n\n'
     + '## Section 2\n\n'
     + 'This is a really, really, really, really, really, really, really, loooong line.\n\n'
+    + '$\\sum_{n=1}^{\\infty} 2^{-n} = 1$\n\n'
     + '$f\'(x) = \\frac{\\cos(\\theta)}{\\sin(x)}$\n\n'
     + '`<head></head>`\n\n'
     + '## Section 3\n\n'
@@ -31,14 +27,18 @@
 
 
   let editor;
-
   let mode = 'edit';
-
-  $: buttonText = mode == 'edit' ? 'Preview' : 'Edit';
-
   let previewHTML = '';
+  $: buttonText = mode == 'edit' ? 'View' : 'Edit';
 
-  function generatePreview() {
+
+  async function generatePreview() {
+    import('katex/dist/katex.min.css');
+    const katex = (await import('katex')).default;
+    const showdown = await import('showdown');
+
+    const markdown = new showdown.Converter();
+
     // Converting markdown to html
     let html = markdown.makeHtml(editorContent);
 
@@ -56,7 +56,7 @@
   }
 
   function toggleMode() {
-    mode = mode == 'edit' ? 'preview' : 'edit';
+    mode = mode == 'edit' ? 'view' : 'edit';
     generatePreview();
   };
 
@@ -89,7 +89,7 @@
     />
   {/if}
 
-  {#if mode == 'preview'}
+  {#if mode == 'view'}
     <div
       data-preview class="overflow-x-hidden" {style}>{@html previewHTML}
     </div>
