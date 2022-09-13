@@ -2,7 +2,7 @@
 	import Button from '$lib/Button.svelte';
   import BackButton from '$lib/BackButton.svelte';
 	import { onMount } from 'svelte';
-	import { backStack } from '$lib/_back_stack';
+	import { pageHistory } from '$lib/_page_history';
 	import { page } from '$app/stores';
 
 	// Personal Access Token
@@ -23,7 +23,7 @@
   });
 
 	function allowBackTracking() {
-		backStack.update(stack => [...stack, pathname]);
+		pageHistory.update(stack => [...stack, pathname]);
 	}
 
 </script>

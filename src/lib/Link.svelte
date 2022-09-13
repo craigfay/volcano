@@ -1,10 +1,10 @@
 
 <script>
-  export let href;
-  export let onClick = Function.prototype;
-	import { backStack } from '$lib/_back_stack';
+	import { pageHistory } from '$lib/_page_history';
 	import { page } from '$app/stores';
 
+  export let onClick = Function.prototype;
+  export let href;
 	let pathname;
 
 	page.subscribe(page => {
@@ -12,7 +12,7 @@
   });
 
 	function allowBackTracking() {
-		backStack.update(stack => [...stack, pathname]);
+		pageHistory.update(stack => [...stack, pathname]);
 	}
 
   function handleClick() {

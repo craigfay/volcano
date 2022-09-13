@@ -1,29 +1,19 @@
 <script>
   import ChevronIcon from '$lib/ChevronIcon.svelte';
-	import { afterNavigate } from '$app/navigation';
+  import { pageHistory } from '$lib/_page_history';
 	import { color } from '$lib/style';
-  import { backStack } from '$lib/_back_stack';
 
   let lastPageURL;
 
-  backStack.subscribe(stack => {
+  pageHistory.subscribe(stack => {
     if (!lastPageURL && stack.length) {
       lastPageURL = stack[stack.length - 1];
     }
   })
 
   function backTrack() {
-    backStack.update(stack => stack.slice(0, -1))
+    pageHistory.update(stack => stack.slice(0, -1))
   }
-
-  // // Getting a URL to navigate back to the last page, if possible
-  // afterNavigate((navigaton) => {
-  //   let pathname = navigaton?.from?.url?.pathname;
-  //   if (pathname) {
-  //     let search = new URLSearchParams({ back: '1' }).toString();
-  //     lastPageURL = `${pathname}?${search}`;
-  //   }
-  // });
 
 </script>
 

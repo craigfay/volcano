@@ -1,7 +1,7 @@
 <script>
 	import { fly } from 'svelte/transition';
   import { flyIn, flyOut } from '$lib/_animations'
-  import { backStack } from '$lib/_back_stack';
+  import { pageHistory } from '$lib/_page_history';
 
 
 	export let url;
@@ -9,7 +9,7 @@
   let pageDepth;
   let isBack = false;
 
-  backStack.subscribe(stack => {
+  pageHistory.subscribe(stack => {
     if (stack.length < pageDepth) isBack = true;
     else isBack = false;
     pageDepth = stack.length;
