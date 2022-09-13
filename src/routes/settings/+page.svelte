@@ -2,17 +2,30 @@
 	import Button from '$lib/Button.svelte';
   import BackButton from '$lib/BackButton.svelte';
 	import { onMount } from 'svelte';
+	import { backStack } from '$lib/_back_stack';
+	import { page } from '$app/stores';
 
 	// Personal Access Token
 	let githubToken = '';
+	let pathname;
 
 	onMount(() => {
 		githubToken = localStorage.getItem('github_token');
 	});
 
+
 	function saveCredentials() {
 		localStorage.setItem('github_token', githubToken);
 	}
+
+	page.subscribe(page => {
+    pathname = page.url.pathname;
+  });
+
+	function allowBackTracking() {
+		backStack.update(stack => [...stack, pathname]);
+	}
+
 </script>
 
 <form class="p-4">
