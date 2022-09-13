@@ -2,8 +2,7 @@
 <script>
 	import HamburgerIcon from './HamburgerIcon.svelte';
 	import ChevronIcon from './ChevronIcon.svelte';
-	import { backStack } from '$lib/_back_stack';
-	import { page } from '$app/stores';
+	import Link from '$lib/Link.svelte';
 
 	export let isOpen = false;
 	export let closeBehavior = () => {}; 
@@ -14,20 +13,6 @@
 		['Settings', '/settings'],
 	];
 
-	let pathname;
-
-	page.subscribe(page => {
-    pathname = page.url.pathname;
-  });
-
-	function allowBackTracking() {
-		backStack.update(stack => [...stack, pathname]);
-	}
-
-	function onMenuItemClick() {
-		allowBackTracking();
-		closeBehavior();
-	}
 </script>
 
 
@@ -46,9 +31,9 @@
 
 	<!-- Menu Items -->
 	{#each menuItems as [name, href]}
-		<a {href} on:click={onMenuItemClick} class="flex justify-between items-center">
+		<Link {href} onClick={closeBehavior} class="flex justify-between items-center">
 			<span class="my-3 text-xl font-bold block">{name}</span>
 			<ChevronIcon color="#666" class="w-5 h-5" />
-		</a>
+		</Link>
 	{/each}
 </div>
