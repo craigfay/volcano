@@ -3,7 +3,6 @@
   import { flyIn, flyOut } from '$lib/_animations'
   import { pageHistory } from '$lib/_page_history';
 
-
 	export let url;
 
   let pageDepth;

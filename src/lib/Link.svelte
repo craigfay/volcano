@@ -1,21 +1,24 @@
 
 <script>
-	import { pageHistory } from '$lib/_page_history';
-	import { page } from '$app/stores';
+  import { pageHistory } from '$lib/_page_history';
+  import { page } from '$app/stores';
 
+  export let clearHistory = false;
   export let onClick = Function.prototype;
   export let href;
-	let pathname;
+  let pathname;
 
-	page.subscribe(page => {
+  page.subscribe(page => {
     pathname = page.url.pathname;
   });
 
-	function allowBackTracking() {
-		pageHistory.update(stack => [...stack, pathname]);
-	}
+  function allowBackTracking() {
+    pageHistory.update(stack => [...stack, pathname]);
+  }
 
   function handleClick() {
+    if (clearHistory) pageHistory.set([]);
+
     allowBackTracking();
     onClick();
   }

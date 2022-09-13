@@ -8,9 +8,9 @@
 	export let closeBehavior = () => {}; 
 
 	export const menuItems = [
-		['Home', '/'],
-		['Editor', '/editor'],
-		['Settings', '/settings'],
+		{ name: 'Home', href: '/', clearHistory: true, },
+		{ name: 'Editor', href: '/editor', clearHistory: false, },
+		{ name: 'Settings', href: '/settings', clearHistory: false, },
 	];
 
 </script>
@@ -30,8 +30,8 @@
 	</button>
 
 	<!-- Menu Items -->
-	{#each menuItems as [name, href]}
-		<Link {href} onClick={closeBehavior} class="flex justify-between items-center">
+	{#each menuItems as {name, href, clearHistory }}
+		<Link {href} {clearHistory} onClick={closeBehavior} class="flex justify-between items-center">
 			<span class="my-3 text-xl font-bold block">{name}</span>
 			<ChevronIcon color="#666" class="w-5 h-5" />
 		</Link>
