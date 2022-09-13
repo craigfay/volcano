@@ -1,6 +1,7 @@
 <script>
   import Button from '$lib/Button.svelte';
   import { color, styleAttr } from '$lib/style';
+  import { onMount } from 'svelte';
 
   export let editorContent = '# Section 1\n\n'
     + '_Enter some text here_\n\n'
@@ -27,9 +28,10 @@
 
 
   let editor;
-  let mode = 'edit';
-  let previewHTML = '';
+  let mode = 'view';
+  let previewHTML = mode == 'view' ? generatePreview() : '';
   $: buttonText = mode == 'edit' ? 'View' : 'Edit';
+
 
 
   async function generatePreview() {
@@ -53,6 +55,7 @@
     })
 
     previewHTML = html;
+    return html;
   }
 
   function toggleMode() {
@@ -76,7 +79,7 @@
 </script>
 
 
-<div class="m-4 flex justify-between max-h-full flex-col h-full max-w-full border-box" {style}>
+<div class="m-4 mt-0 flex justify-between max-h-full flex-col h-full max-w-full border-box" {style}>
 
   {#if mode == 'edit'}
     <textarea
