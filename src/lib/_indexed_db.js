@@ -1,6 +1,6 @@
 
 import { browser } from '$app/environment'
-import { getContext } from 'svelte';
+import { getContext, setContext } from 'svelte';
 
 
 // A helper function that allows a component to get
@@ -10,7 +10,7 @@ export function indexedDBContext() {
 }
 
 // Make the indexed db instance available as svelte context
-export function exposeIndexedDB(setContext) {
+export function openIndexedDB() {
   setContext(contextKey, contextValue)
 }
 
