@@ -9,6 +9,11 @@ export const flyIn = {
   right: { x: flyDist, duration: flySpeed, delay: flySpeed },
 }
 
+export const delayedFlyIn = {
+  left: (delay) => ({ x: -flyDist, duration: flySpeed, delay }),
+  right: (delay) => ({ x: flyDist, duration: flySpeed, delay }),
+}
+
 export const flyOut = {
   left: { x: -flyDist, duration: flySpeed },
   right: { x: flyDist, duration: flySpeed },
