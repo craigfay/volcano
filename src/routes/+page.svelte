@@ -24,15 +24,19 @@
 <h1 class="text-4xl font-bold text-indigo-900 m-6">Notebooks 📖</h1>
 
 {#if isLoaded && !notebooks.length}
-  <p class="text-lg text-indigo-800 m-6 p-4 text-center bg-indigo-50 rounded-md">
+  <p class="text-lg text-indigo-800 m-4 p-4 text-center bg-indigo-100 rounded-lg">
     You don't have any notebooks yet...<br />
     <Link href="/create-new" class="underline">Create a new one!</Link> ✏
+  </p>
+{:else}
+  <p class="text-lg text-indigo-800 m-4 p-4 text-center bg-indigo-100 rounded-lg">
+    <Link href="/create-new" class="font-bold">New Notebook</Link> ✏
   </p>
 {/if}
 
 {#each notebooks as notebook}
-  <div class="p-4 mb-4 mx-4 rounded-md bg-indigo-50">
-    <div class="text-xl font-bold text-indigo-900">{notebook.name}</div>
-    <div class="text-indigo-800">{notebook.description}</div>
+  <div class="p-4 mb-4 mx-4 rounded-lg border-2 border-indigo-200">
+    <div class="text-xl font-bold text-indigo-800">{notebook.name}</div>
+    <div class="text-indigo-700">{notebook.description}</div>
   </div>
 {/each}

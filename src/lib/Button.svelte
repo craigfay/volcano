@@ -13,7 +13,7 @@
     "px-6",
     "py-2",
     "block",
-    "rounded-md",
+    "rounded-lg",
     "text-white",
     "tracking-wide",
     "font-semibold",

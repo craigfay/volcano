@@ -33,7 +33,7 @@
 		name="name" bind:value={name}
 		type="text"
 		autocomplete="off"
-		class="p-2 border-2 border-indigo-200 rounded-md mb-6 w-full"
+		class="p-2 border-2 border-indigo-200 rounded-lg mb-6 w-full"
 	/>
 
 	<label for="description" class="flex font-bold text-indigo-800 mb-1">Description</label>
@@ -45,7 +45,7 @@
 		bind:value={description}
 		autocomplete="off"
 		type="text"
-		class="p-2 border-2 border-indigo-200 rounded-md mb-6 w-full"
+		class="p-2 border-2 border-indigo-200 rounded-lg mb-6 w-full"
 	/>
 
 	<Button class="w-full my-2 py-3" onClick={save}>Save</Button>
