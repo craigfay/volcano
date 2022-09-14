@@ -1,17 +1,15 @@
 <script>
 	import Button from '$lib/Button.svelte';
   import BackButton from '$lib/BackButton.svelte';
-  import { loadIndexedDBContext } from '$lib/_indexed_db';
+  import { indexedDBContext } from '$lib/_indexed_db';
 
 
-	const databaseStartup = loadIndexedDBContext();
-
-
+	const dbPromise = indexedDBContext();
 	let name = '';
 	let description = '';
 
 	async function save() {
-		let db = await databaseStartup;
+		let db = await dbPromise;
 
 		db.notebooks.add({ name, description })
 			.then(success => console.log({ success }))

@@ -1,12 +1,13 @@
 
 import { browser } from '$app/environment'
-
 import { getContext } from 'svelte';
 
-export function loadIndexedDBContext() {
+
+// A helper function that allows a component to get
+// a reference to the database without multiple imports.
+export function indexedDBContext() {
   return getContext(contextKey);
 }
-
 
 // Make the indexed db instance available as svelte context
 export function exposeIndexedDB(setContext) {

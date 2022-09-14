@@ -1,16 +1,14 @@
 <script>
   import Link from '$lib/Link.svelte';
-  import { onMount, getContext } from 'svelte';
-  import { contextKey as indexedDBContext } from '$lib/_indexed_db';
+  import { indexedDBContext } from '$lib/_indexed_db';
+  import { onMount } from 'svelte';
 
+	const dbPromise = indexedDBContext();
   let notebooks = [];
   let isLoaded;
 
-  const databaseStartup = getContext(indexedDBContext);
-
-
   async function getNotebooks() {
-    const db = await databaseStartup;
+    const db = await dbPromise;
     return await db.notebooks.getAll();
   }
 
@@ -18,6 +16,7 @@
     notebooks = await getNotebooks();
     isLoaded = true;
   });
+
 </script>
 
 
@@ -29,9 +28,9 @@
     <Link href="/create-new" class="underline">Create a new one!</Link> ✏
   </p>
 {:else}
-  <p class="text-lg text-indigo-800 m-4 mb-6 p-4 text-center bg-indigo-100 rounded-lg">
-    <Link href="/create-new" class="font-bold">New Notebook</Link> ✏
-  </p>
+  <Link href="/create-new" class="block font-bold text-lg text-indigo-800 m-4 mb-6 p-4 text-center bg-indigo-100 rounded-lg">
+    New Notebook ✏
+  </Link> 
 {/if}
 
 {#each notebooks as notebook}
