@@ -30,4 +30,9 @@
   </p>
 {/if}
 
-{#each notebooks as notebook}{/each}
+{#each notebooks as notebook}
+  <div class="p-4 mb-4 mx-4 rounded-md bg-indigo-50">
+    <div class="text-xl font-bold text-indigo-900">{notebook.name}</div>
+    <div class="text-indigo-800">{notebook.description}</div>
+  </div>
+{/each}

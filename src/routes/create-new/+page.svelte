@@ -1,11 +1,23 @@
 <script>
 	import Button from '$lib/Button.svelte';
   import BackButton from '$lib/BackButton.svelte';
+  import { loadIndexedDBContext } from '$lib/_indexed_db';
+
+
+	const databaseStartup = loadIndexedDBContext();
+
 
 	let name = '';
 	let description = '';
 
-	function save() {}
+	async function save() {
+		let db = await databaseStartup;
+
+		db.notebooks.add({ name, description })
+			.then(success => console.log({ success }))
+			.catch(failure => console.log({ failure }))
+	}
+
 </script>
 
 <form class="p-4">

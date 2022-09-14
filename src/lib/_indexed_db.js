@@ -1,6 +1,13 @@
 
 import { browser } from '$app/environment'
 
+import { getContext } from 'svelte';
+
+export function loadIndexedDBContext() {
+  return getContext(contextKey);
+}
+
+
 // Make the indexed db instance available as svelte context
 export function exposeIndexedDB(setContext) {
   setContext(contextKey, contextValue)
@@ -44,7 +51,7 @@ function makeHelperFns(db, storeName) {
     add(data) {
       return new Promise((resolve, reject) => {
         const transaction = db.transaction(storeName, "readwrite");
-        transaction.ooncomplete = resolve;
+        transaction.oncomplete = resolve;
         transaction.onerror = reject;
 
         const objectStore = transaction.objectStore(storeName);
