@@ -1,8 +1,8 @@
 <script>
   import Link from '$components/Link.svelte';
-  import { indexedDBContext } from '$lib/_indexed_db';
+  import { indexedDBContext } from '$lib/indexed_db';
   import { onMount } from 'svelte';
-  import { delayedFlyIn, flipParams } from '$lib/_animations';
+  import { delayedFlyIn, flipParams } from '$lib/animations';
   import { flip } from 'svelte/animate';
   import { fade } from 'svelte/transition';
 

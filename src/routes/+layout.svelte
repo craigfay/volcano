@@ -2,7 +2,7 @@
   import '../tailwind.css';
   import HeaderFooter from "$components/HeaderFooter.svelte";
   import PageTransition from '$components/PageTransition.svelte';
-  import { openIndexedDB } from '$lib/_indexed_db';
+  import { openIndexedDB } from '$lib/indexed_db';
 
   /** @type {import('./$types').LayoutData} */
 	export let data;

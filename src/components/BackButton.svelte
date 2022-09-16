@@ -1,6 +1,6 @@
 <script>
   import ChevronIcon from '$components/ChevronIcon.svelte';
-  import { pageHistory } from '$lib/_page_history';
+  import { pageHistory } from '$lib/page_history';
 	import { color } from '$lib/style';
 
   let lastPageURL;

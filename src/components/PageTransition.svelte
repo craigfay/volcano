@@ -1,7 +1,7 @@
 <script>
 	import { fly } from 'svelte/transition';
-  import { flyIn, flyOut } from '$lib/_animations'
-  import { pageHistory } from '$lib/_page_history';
+  import { flyIn, flyOut } from '$lib/animations';
+  import { pageHistory } from '$lib/page_history';
 
 	export let url;
 

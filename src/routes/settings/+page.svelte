@@ -2,7 +2,7 @@
 	import Button from '$components/Button.svelte';
   import BackButton from '$components/BackButton.svelte';
 	import { onMount } from 'svelte';
-	import { pageHistory } from '$lib/_page_history';
+	import { pageHistory } from '$lib/page_history';
 	import { page } from '$app/stores';
 
 	// Personal Access Token

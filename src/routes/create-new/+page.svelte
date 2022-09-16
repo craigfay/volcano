@@ -1,7 +1,7 @@
 <script>
 	import Button from '$components/Button.svelte';
   import BackButton from '$components/BackButton.svelte';
-  import { indexedDBContext } from '$lib/_indexed_db';
+  import { indexedDBContext } from '$lib/indexed_db';
 
 
 	const dbPromise = indexedDBContext();
