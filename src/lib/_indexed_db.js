@@ -63,9 +63,7 @@ function makeHelperFns(db, storeName) {
 
 }
 
-function capitalize(word) {
-  return word.charAt(0).toUpperCase() + word.slice(1);
-}
+
 
 
 export async function loadIndexedDB() {
