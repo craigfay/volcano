@@ -1,5 +1,5 @@
 <script>
-  import ChevronIcon from '$lib/components/ChevronIcon.svelte';
+  import ChevronIcon from '$components/ChevronIcon.svelte';
   import { pageHistory } from '$lib/_page_history';
 	import { color } from '$lib/style';
 

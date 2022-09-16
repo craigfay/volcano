@@ -1,4 +1,4 @@
 
-{#await import("$lib/components/NoteEditor.svelte") then Module}
+{#await import("$components/NoteEditor.svelte") then Module}
 	<Module.default />
 {/await}

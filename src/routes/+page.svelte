@@ -1,5 +1,5 @@
 <script>
-  import Link from '$lib/components/Link.svelte';
+  import Link from '$components/Link.svelte';
   import { indexedDBContext } from '$lib/_indexed_db';
   import { onMount } from 'svelte';
   import { delayedFlyIn, flipParams } from '$lib/_animations';

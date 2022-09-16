@@ -2,7 +2,7 @@
 <script>
 	import HamburgerIcon from './HamburgerIcon.svelte';
 	import ChevronIcon from './ChevronIcon.svelte';
-	import Link from '$lib/components/Link.svelte';
+	import Link from '$components/Link.svelte';
 	import { color } from '$lib/style.js'
 
 	export let isOpen = false;
