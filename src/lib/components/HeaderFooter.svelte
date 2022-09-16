@@ -1,7 +1,7 @@
 
 <script>
-  import Menu from "$lib/Menu.svelte";
-  import NavBar from "$lib/NavBar.svelte";
+  import Menu from "$lib/components/Menu.svelte";
+  import NavBar from "$lib/components/NavBar.svelte";
 
   let isOpen = false;
   let toggleMenu = () => isOpen = !isOpen;

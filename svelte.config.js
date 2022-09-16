@@ -14,8 +14,8 @@ const config = {
 
 	kit: {
 		adapter: adapter(),
-    inlineStyleThreshold: 1024 * 15,
-	}
+		inlineStyleThreshold: 1024 * 15,
+	},
 };
 
 export default config;

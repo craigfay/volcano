@@ -1,7 +1,7 @@
 <script>
   import '../tailwind.css';
-  import HeaderFooter from "$lib/HeaderFooter.svelte";
-  import PageTransition from '$lib/PageTransition.svelte';
+  import HeaderFooter from "$lib/components/HeaderFooter.svelte";
+  import PageTransition from '$lib/components/PageTransition.svelte';
   import { openIndexedDB } from '$lib/_indexed_db';
 
   /** @type {import('./$types').LayoutData} */

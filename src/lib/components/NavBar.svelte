@@ -1,7 +1,7 @@
 
 <script>
-  import HamburgerIcon from './HamburgerIcon.svelte';
-  import SearchIcon from './SearchIcon.svelte';
+  import HamburgerIcon from '$lib/components/HamburgerIcon.svelte';
+  import SearchIcon from '$lib/components/SearchIcon.svelte';
   import { color, styleAttr } from '$lib/style';
 
   export let isOpen = false;

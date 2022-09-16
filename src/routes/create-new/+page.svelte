@@ -1,6 +1,6 @@
 <script>
-	import Button from '$lib/Button.svelte';
-  import BackButton from '$lib/BackButton.svelte';
+	import Button from '$lib/components/Button.svelte';
+  import BackButton from '$lib/components/BackButton.svelte';
   import { indexedDBContext } from '$lib/_indexed_db';
 
 

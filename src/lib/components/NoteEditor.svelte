@@ -1,5 +1,5 @@
 <script>
-  import Button from '$lib/Button.svelte';
+  import Button from '$lib/components/Button.svelte';
   import { color, styleAttr } from '$lib/style';
   import { onMount } from 'svelte';
 

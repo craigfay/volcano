@@ -1,6 +1,6 @@
 <script>
-	import Button from '$lib/Button.svelte';
-  import BackButton from '$lib/BackButton.svelte';
+	import Button from '$lib/components/Button.svelte';
+  import BackButton from '$lib/components/BackButton.svelte';
 	import { onMount } from 'svelte';
 	import { pageHistory } from '$lib/_page_history';
 	import { page } from '$app/stores';
