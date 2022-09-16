@@ -3,7 +3,7 @@
 	import HamburgerIcon from './HamburgerIcon.svelte';
 	import ChevronIcon from './ChevronIcon.svelte';
 	import Link from '$components/Link.svelte';
-	import { color } from '$lib/style.js'
+	import { color } from '$lib/style'
 
 	export let isOpen = false;
 	export let closeBehavior = () => {}; 
