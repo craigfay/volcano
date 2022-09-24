@@ -2,9 +2,9 @@
   import Link from '$components/Link.svelte';
   import { indexedDBContext } from '$lib/indexed_db';
   import { onMount } from 'svelte';
-  import { delayedFlyIn, flipParams } from '$lib/animations';
+  import { flyIn, delayedFlyIn, flipParams } from '$lib/animations';
   import { flip } from 'svelte/animate';
-  import { fade } from 'svelte/transition';
+  import { fade, fly } from 'svelte/transition';
 
 	const dbPromise = indexedDBContext();
   let notebooks = [];
@@ -36,9 +36,9 @@
   </Link> 
 {/if}
 
-{#each  notebooks as { name, description }, i (i)}
-  <div animate:flip={flipParams} in:fade={delayedFlyIn.left(100 * i)} class="p-4 mb-4 mx-4 rounded-lg border-2 border-indigo-200">
-    <div class="text-xl font-bold text-indigo-800 truncate whitespace-pre-wrap">{name}</div>
+{#each notebooks as { name, description }, i (i)}
+  <div animate:flip={flipParams} in:fly={delayedFlyIn.bottom(100 * i)} class="p-4 mb-4 mx-4 rounded-lg border-2 border-indigo-200">
+    <div href="" class="text-xl font-bold text-indigo-800 truncate whitespace-pre-wrap">{name}</div>
     <div class="text-indigo-700 truncate whitespace-pre-wrap">{description}</div>
   </div>
 {/each}
