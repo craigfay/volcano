@@ -5,6 +5,7 @@
   import { flyIn, delayedFlyIn, flipParams } from '$lib/animations';
   import { flip } from 'svelte/animate';
   import { fade, fly } from 'svelte/transition';
+import { stringify } from 'postcss';
 
 	const dbPromise = indexedDBContext();
   let notebooks = [];
@@ -36,9 +37,9 @@
   </Link> 
 {/if}
 
-{#each notebooks as { name, description }, i (i)}
+{#each notebooks as { slug, name, description }, i (i)}
   <div animate:flip={flipParams} in:fly={delayedFlyIn.bottom(100 * i)} class="p-4 mb-4 mx-4 rounded-lg border-2 border-indigo-200">
-    <div href="" class="text-xl font-bold text-indigo-800 truncate whitespace-pre-wrap">{name}</div>
+    <Link href="/notebooks/{slug}" class="text-xl font-bold text-indigo-800 truncate whitespace-pre-wrap">{name}</Link>
     <div class="text-indigo-700 truncate whitespace-pre-wrap">{description}</div>
   </div>
 {/each}

@@ -59,6 +59,17 @@ function makeHelperFns(db, storeName) {
         objectStore.add(data)
       })
     },
+
+    put(data) {
+      return new Promise((resolve, reject) => {
+        const transaction = db.transaction(storeName, "readwrite");
+        transaction.oncomplete = resolve;
+        transaction.onerror = reject;
+
+        const objectStore = transaction.objectStore(storeName);
+        objectStore.put(data)
+      })
+    },
   }
 
 }
@@ -80,8 +91,8 @@ export function upgradeIndexedDBv1(event) {
   return new Promise((resolve, reject) => {
 
     const stores = [
-      ["notebooks", { keyPath: "name" }],
-      ["notes", { keyPath: "name" }],
+      ["notebooks", { keyPath: "slug", autoIncrement: true, }],
+      ["notes", { keyPath: "slug", autoIncrement: true, }],
     ];
 
     let db = event.target.result;

@@ -7,11 +7,12 @@
 	const dbPromise = indexedDBContext();
 	let name = '';
 	let description = '';
+	$: slug = name.toLowerCase().replace(/\s/g, '-')
 
 	async function save() {
 		let db = await dbPromise;
 
-		db.notebooks.add({ name, description })
+		db.notebooks.add({ slug, name, description })
 			.then(success => console.log({ success }))
 			.catch(failure => console.log({ failure }))
 	}
