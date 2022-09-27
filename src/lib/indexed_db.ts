@@ -49,6 +49,15 @@ function makeHelperFns(db, storeName) {
       })
     },
 
+    get(key) {
+      return new Promise((resolve, reject) => {
+        const objectStore = db.transaction(storeName).objectStore(storeName);
+        const request = objectStore.get(key)
+        request.onsuccess = event => resolve(event.target.result);
+        request.onerror = event => reject(event);
+      })
+    },
+
     add(data) {
       return new Promise((resolve, reject) => {
         const transaction = db.transaction(storeName, "readwrite");

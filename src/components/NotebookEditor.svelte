@@ -2,17 +2,43 @@
   import Button from '$components/Button.svelte';
   import BackButton from '$components/BackButton.svelte';
   import { indexedDBContext } from '$lib/indexed_db';
+  import { onMount } from 'svelte';
 
+  export let slug;
+  export let isAlreadySaved = Boolean(slug);
 
   const dbPromise = indexedDBContext();
+
   let name = '';
   let description = '';
-  $: slug = name.toLowerCase().replace(/\s/g, '-')
+
+
+  async function loadNotebook() {
+    if (!slug) return;
+    let db = await dbPromise;
+    const notebook = await db.notebooks.get(slug);
+
+    if (notebook) {
+      name = notebook.name;
+      description = notebook.description;
+      slug = notebook.slug;
+    }
+  }
+
+  onMount(loadNotebook);
+
+
 
   async function save() {
     let db = await dbPromise;
 
-    db.notebooks.add({ slug, name, description })
+    const saveChanges = isAlreadySaved
+      ? db.notebooks.put
+      : db.notebooks.add;
+
+    if (!isAlreadySaved) slug = name.toLowerCase().replace(/\s/g, '-');
+
+    saveChanges({ slug, name, description })
       .then(success => console.log({ success }))
       .catch(failure => console.log({ failure }))
   }
