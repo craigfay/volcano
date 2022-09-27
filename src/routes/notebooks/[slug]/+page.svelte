@@ -5,9 +5,13 @@
   let slug = data?.params?.slug;
 
   import NotebookEditor from '$components/NotebookEditor.svelte';
+  import BackButton from '$components/BackButton.svelte';
 </script>
 
-<!-- <h1>Notebook</h1> -->
-<!-- <pre>{JSON.stringify(data, null, 2)}</pre> -->
 
-<NotebookEditor {slug}/>
+<div class="p-4">
+  <BackButton />
+
+  <h1 class="text-2xl font-bold text-indigo-900 mb-6">Edit Notebook</h1>
+  <NotebookEditor {slug}/>
+</div>

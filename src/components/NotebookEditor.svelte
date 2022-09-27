@@ -4,14 +4,13 @@
   import { indexedDBContext } from '$lib/indexed_db';
   import { onMount } from 'svelte';
 
-  export let slug;
+  export let slug = null;
   export let isAlreadySaved = Boolean(slug);
 
   const dbPromise = indexedDBContext();
 
   let name = '';
   let description = '';
-
 
   async function loadNotebook() {
     if (!slug) return;
@@ -43,13 +42,11 @@
       .catch(failure => console.log({ failure }))
   }
 
+
+
 </script>
 
-<form class="p-4">
-  <BackButton />
-
-  <h1 class="text-2xl font-bold text-indigo-900 mb-6">New Notebook</h1>
-
+<form>
   <label for="name" class="flex font-bold text-indigo-800 mb-1">Name</label>
   <p class="text-sm text-indigo-700 mb-2">
     Give a unique name to the notebook so you can distinguish it from others.
