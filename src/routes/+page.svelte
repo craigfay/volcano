@@ -2,9 +2,9 @@
   import Link from '$components/Link.svelte';
   import { indexedDBContext } from '$lib/indexed_db';
   import { onMount } from 'svelte';
-  import { flyIn, delayedFlyIn, flipParams } from '$lib/animations';
+  import { delayedFlyIn, flipParams } from '$lib/animations';
   import { flip } from 'svelte/animate';
-  import { fade, fly } from 'svelte/transition';
+  import { fly } from 'svelte/transition';
 import { stringify } from 'postcss';
 
 	const dbPromise = indexedDBContext();
@@ -43,3 +43,4 @@ import { stringify } from 'postcss';
     <div class="text-indigo-700 truncate whitespace-pre-wrap">{description}</div>
   </div>
 {/each}
+

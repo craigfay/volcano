@@ -26,4 +26,3 @@
     <slot></slot>
   </PageTransition>
 </HeaderFooter>
-
