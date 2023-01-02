@@ -3,11 +3,25 @@
   import HeaderFooter from "$components/HeaderFooter.svelte";
   import PageTransition from '$components/PageTransition.svelte';
   import { openIndexedDB } from '$lib/indexed_db';
+  import { onMount } from 'svelte';
+  import { RestClient } from '$lib/github';
 
   /** @type {import('./$types').LayoutData} */
 	export let data;
 
   openIndexedDB();
+
+  onMount(async () => {
+    const github = RestClient({
+      PAT: localStorage.getItem('github_token'),
+    })
+
+    const data = await github.repo('craigfay', 'brain_forest')
+      .then(res => res.json())
+
+    console.log({ github, data })
+
+  })
 </script>
 
 

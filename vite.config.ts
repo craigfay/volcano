@@ -5,6 +5,9 @@ import path from 'path';
 
 const config: UserConfig = {
   plugins: [sveltekit()],
+  define: {
+    global: {},
+  },
   resolve: {
     alias: {
       '$components': path.resolve('./src/components'),

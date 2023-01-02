@@ -5,7 +5,7 @@
   import { delayedFlyIn, flipParams } from '$lib/animations';
   import { flip } from 'svelte/animate';
   import { fly } from 'svelte/transition';
-import { stringify } from 'postcss';
+  import { stringify } from 'postcss';
 
   const dbPromise = indexedDBContext();
   let notebooks = [];
@@ -17,6 +17,11 @@ import { stringify } from 'postcss';
   }
 
   onMount(async () => {
+    // let githubClient = new Octokit({
+    //   auth: localStorage.getItem('github_token'),
+    // })
+
+    // console.log({ githubClient })
 
     notebooks = await getNotebooks();
     isLoaded = true;
