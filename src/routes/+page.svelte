@@ -7,7 +7,7 @@
   import { fly } from 'svelte/transition';
 import { stringify } from 'postcss';
 
-	const dbPromise = indexedDBContext();
+  const dbPromise = indexedDBContext();
   let notebooks = [];
   let isLoaded;
 
@@ -17,6 +17,7 @@ import { stringify } from 'postcss';
   }
 
   onMount(async () => {
+
     notebooks = await getNotebooks();
     isLoaded = true;
   });
