@@ -16,10 +16,10 @@
       PAT: localStorage.getItem('github_token'),
     })
 
-    const data = await github.repo('craigfay', 'brain_forest')
-      .then(res => res.json())
+    // const data = await github.repo('craigfay/brain_forest')
+    //   .then(res => res.json())
 
-    console.log({ github, data })
+    // console.log(data)
 
   })
 </script>

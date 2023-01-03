@@ -8,9 +8,11 @@ export function RestClient({ PAT = '' }) {
   }
 
   return {
-    repo(org = '', name = '') {
-      const url = `${baseURL}/repos/${org}/${name}`;
+
+    repo(name = '') {
+      const url = `${baseURL}/repos/${name}/contents`;
       return fetch(url, { headers })
-    }
+    },
+
   }
 }

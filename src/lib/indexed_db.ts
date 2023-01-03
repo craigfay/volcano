@@ -101,7 +101,8 @@ export function upgradeIndexedDBv1(event) {
 
     const stores = [
       ["notebooks", { keyPath: "slug", autoIncrement: true, }],
-      ["notes", { keyPath: "slug", autoIncrement: true, }],
+      ["notebooks", { keyPath: "slug", autoIncrement: true, }],
+      ["repos", { keyPath: "slug", autoIncrement: true, }],
     ];
 
     let db = event.target.result;
