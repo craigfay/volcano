@@ -96,7 +96,5 @@
     class="p-2 border-2 border-indigo-200 rounded-lg mb-6 w-full"
   />
 
-
-
   <Button class="w-full my-2 py-3" onClick={save}>Save</Button>
 </form>
